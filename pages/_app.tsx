@@ -1,7 +1,14 @@
 import type { AppProps } from "next/app";
 import localFont from "next/font/local";
 import * as React from "react";
+
 import "../styles/globals.css";
+
+import { NextUIProvider } from "@nextui-org/react";
+
+import "../components/nextui_button";
+import "../components/nextui_accordion";
+import "../components/nextui_pagination";
 
 const ClashDisplay = localFont({
   src: "./ClashDisplay-Variable.woff2",
@@ -14,5 +21,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
     document.body.classList.add(ClashDisplay.variable);
   }, []);
-  return <Component {...pageProps} />;
+
+  return (
+    <NextUIProvider>
+      <Component {...pageProps} />;
+    </NextUIProvider>
+  );
 }

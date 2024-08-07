@@ -29,6 +29,8 @@ export default function PlasmicLoaderPage(props: {
       pageRoute={pageMeta.path}
       pageParams={pageMeta.params}
       pageQuery={router.query}
+      disableLoadingBoundary={true}
+      disableRootLoadingBoundary={true}
     >
       <PlasmicComponent component={pageMeta.displayName} />
     </PlasmicRootProvider>

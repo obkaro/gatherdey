@@ -9,6 +9,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import "../components/nextui_button";
 import "../components/nextui_accordion";
 import "../components/nextui_pagination";
+import "../components/nextui_divider";
 
 const ClashDisplay = localFont({
   src: "./ClashDisplay-Variable.woff2",

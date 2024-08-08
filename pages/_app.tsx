@@ -10,6 +10,7 @@ import "../components/nextui_button";
 import "../components/nextui_accordion";
 import "../components/nextui_pagination";
 import "../components/nextui_divider";
+import "../components/nextui_navbar";
 
 const ClashDisplay = localFont({
   src: "./ClashDisplay-Variable.woff2",

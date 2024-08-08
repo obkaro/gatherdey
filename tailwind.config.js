@@ -17,7 +17,18 @@ module.exports = {
   },
   darkMode: "class",
   plugins: [
-    nextui()
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            primary: {
+              DEFAULT: '#003300',
+              foreground: '#fff',
+            }, // green
+          }
+        }
+      }
+    })
   ],
 }
 

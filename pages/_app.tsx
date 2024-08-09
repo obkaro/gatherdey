@@ -38,7 +38,7 @@ const SofiaSansSemiCondensedBoldItalic = localFont({
   variable: "--SofiaSansSemiCondensedBoldItalic",
 });
 
-console.log("Environment: ", process.env.NODE_ENV);
+console.log("Environment: ", process.env.NEXT_PUBLIC_NODE_ENV);
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   // Set the CSS variable on <body> to ensure Plasmic Studio has access to the variable.

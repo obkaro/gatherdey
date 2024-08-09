@@ -9,7 +9,7 @@ export const PLASMIC = initPlasmicLoader({
       version:
         process.env.NODE_ENV === "production"
           ? "prod"
-          : (process.env as { [key: string]: string }).NODE_ENV === "staging"
+          : process.env.NODE_ENV === "development"
           ? "staging"
           : // If not production or staging, then just use the latest
             // published version, regardless of tags

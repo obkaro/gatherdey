@@ -113,11 +113,20 @@ function NextuiNavbarContent({
 interface NavbarItemProps {
   children: React.ReactNode;
   isActive?: boolean;
+  className?: string;
 }
 
 // Define NavbarItem Component
-function NextuiNavbarItem({ children, isActive = false }: NavbarItemProps) {
-  return <NavbarItem data-active={isActive}>{children}</NavbarItem>;
+function NextuiNavbarItem({
+  children,
+  isActive = false,
+  className,
+}: NavbarItemProps) {
+  return (
+    <NavbarItem data-active={isActive} className={className}>
+      {children}
+    </NavbarItem>
+  );
 }
 
 // Define NavbarMenuToggle Props
@@ -129,6 +138,7 @@ interface NavbarMenuToggleProps {
   defaultSelected?: boolean;
   srOnlyText?: string;
   onChange?: (isOpen: boolean) => void;
+  className?: string;
 }
 
 // Define NavbarMenuToggle Component
@@ -138,6 +148,7 @@ function NextuiNavbarMenuToggle({
   defaultSelected = false,
   srOnlyText = "open/close navigation menu",
   onChange,
+  className,
 }: NavbarMenuToggleProps) {
   const [isOpen, setIsOpen] = useState(defaultSelected);
 
@@ -153,6 +164,7 @@ function NextuiNavbarMenuToggle({
       data-pressed={isSelected}
       onClick={handleToggle}
       onChange={onChange}
+      className={className}
     >
       {typeof icon === "function" ? icon(isOpen) : icon}
       <span className="sr-only">{srOnlyText}</span>

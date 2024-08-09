@@ -18,10 +18,36 @@ const ClashDisplay = localFont({
   variable: "--ClashDisplay",
 });
 
+const DMSans = localFont({
+  src: "./DMSans.woff2",
+  variable: "--DMSans",
+});
+
+const DMSansItalic = localFont({
+  src: "./DMSans-Italic.woff2",
+  variable: "--DMSansItalic",
+});
+
+const SofiaSansSemiCondensedBold = localFont({
+  src: "./SofiaSansSemiCondensed-Bold.woff2",
+  variable: "--SofiaSansSemiCondensedBold",
+});
+
+const SofiaSansSemiCondensedBoldItalic = localFont({
+  src: "./SofiaSansSemiCondensed-BoldItalic.woff2",
+  variable: "--SofiaSansSemiCondensedBoldItalic",
+});
+
 export default function MyApp({ Component, pageProps }: AppProps) {
   // Set the CSS variable on <body> to ensure Plasmic Studio has access to the variable.
   React.useEffect(() => {
-    document.body.classList.add(ClashDisplay.variable);
+    document.body.classList.add(
+      ClashDisplay.variable,
+      DMSans.variable,
+      DMSansItalic.variable,
+      SofiaSansSemiCondensedBold.variable,
+      SofiaSansSemiCondensedBoldItalic.variable
+    );
   }, []);
 
   return (

@@ -6,6 +6,14 @@ export const PLASMIC = initPlasmicLoader({
       id: "8uDg9RTpF7ECVGA2BV47zS",
       token:
         "zmo8HNSEF2XemY87OxDC203OvEB2cUJIWSL5YxMJn3fu0KVtHiTARKRNlUWuCGueW9WVzrxn6P53hGjPksyg",
+      version:
+        process.env.NODE_ENV === "production"
+          ? "prod"
+          : (process.env as { [key: string]: string }).NODE_ENV === "staging"
+          ? "staging"
+          : // If not production or staging, then just use the latest
+            // published version, regardless of tags
+            undefined,
     },
   ],
 

@@ -11,6 +11,8 @@ import "../components/nextui_accordion";
 import "../components/nextui_pagination";
 import "../components/nextui_divider";
 import "../components/nextui_navbar";
+import "../components/nextui_input";
+import "../components/shadcn_form";
 
 const ClashDisplay = localFont({
   src: "./ClashDisplay-Variable.woff2",

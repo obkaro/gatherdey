@@ -31,6 +31,9 @@ export default function PlasmicLoaderPage(props: {
       pageQuery={router.query}
       disableLoadingBoundary={true}
       disableRootLoadingBoundary={true}
+      globalContextsProps={{
+        productContextProps: { tokenId: "token-id" },
+      }}
     >
       <PlasmicComponent component={pageMeta.displayName} />
     </PlasmicRootProvider>

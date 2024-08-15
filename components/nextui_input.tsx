@@ -54,7 +54,7 @@ export interface InputProps {
     | "errorMessage",
     string
   >;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (value: string) => void;
   onValueChange?: (value: string) => void;
   onClear?: () => void;
 }
@@ -84,7 +84,6 @@ export function NextuiInput({
   isDisabled = false,
   isInvalid = false,
   baseRef,
-  validationState,
   disableAnimation = false,
   classNames,
   onChange,
@@ -119,8 +118,8 @@ export function NextuiInput({
       disableAnimation={disableAnimation}
       classNames={classNames}
       onChange={(e) => {
-        onChange?.(e);
-        onValueChange?.(e.target.value);
+        onChange?.(e.target.value);
+        //onValueChange?.(e.target.value);
       }}
       onClear={onClear}
     />
@@ -163,9 +162,7 @@ PLASMIC.registerComponent(NextuiInput, {
     label: {
       type: "string",
     },
-    value: {
-      type: "string",
-    },
+    value: "string",
     defaultValue: {
       type: "string",
     },
@@ -185,9 +182,11 @@ PLASMIC.registerComponent(NextuiInput, {
     },
     startContent: {
       type: "slot",
+      hidePlaceholder: true,
     },
     endContent: {
       type: "slot",
+      hidePlaceholder: true,
     },
     labelPlacement: {
       type: "choice",
@@ -217,15 +216,11 @@ PLASMIC.registerComponent(NextuiInput, {
       type: "boolean",
       defaultValueHint: false,
     },
-    disableAnimation: {
-      type: "boolean",
-      defaultValueHint: false,
-    },
     onChange: {
       type: "eventHandler",
       argTypes: [
         {
-          name: "event",
+          name: "value",
           type: "object",
         },
       ],
@@ -242,6 +237,28 @@ PLASMIC.registerComponent(NextuiInput, {
     onClear: {
       type: "eventHandler",
       argTypes: [],
+    },
+  },
+  refActions: {
+    clearField: {
+      description: "Clear the input field",
+      argTypes: [],
+    },
+  },
+  states: {
+    value: {
+      // The state value is owned by the parent -- parent can control
+      // the value of this state
+      type: "writable",
+      // The type of state value
+      variableType: "object",
+      // The prop name that controls this state
+      valueProp: "value",
+      // The prop name for the event handler that is called whenever
+      // this state changes
+      onChangeProp: "onChange",
+      // The initial value of a writable state is sepecified as the
+      // `defaultValue` for your valueProp
     },
   },
 });

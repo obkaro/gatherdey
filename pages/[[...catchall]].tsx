@@ -34,6 +34,7 @@ export default function PlasmicLoaderPage(props: {
       globalContextsProps={{
         productContextProps: { tokenId: "token-id" },
       }}
+      skipFonts={true}
     >
       <PlasmicComponent component={pageMeta.displayName} />
     </PlasmicRootProvider>

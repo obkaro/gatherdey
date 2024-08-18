@@ -1,6 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scroll-horizontal::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Internet Explorer and Edge Legacy */
+.no-scroll-horizontal {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 /* 
 @layer base {
   :root {

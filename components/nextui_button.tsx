@@ -22,8 +22,6 @@ interface NextuiButtonProps {
     | "danger";
   size?: "sm" | "md" | "lg";
   radius?: "none" | "sm" | "md" | "lg" | "full";
-  hasStart?: boolean;
-  hasEnd?: boolean;
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
   spinner?: React.ReactNode;
@@ -44,8 +42,6 @@ export default function NextuiButton({
   color = "default",
   size = "md",
   radius,
-  hasStart,
-  hasEnd,
   startContent,
   endContent,
   spinner,
@@ -73,9 +69,7 @@ export default function NextuiButton({
       disableAnimation={disableAnimation}
       onClick={onPress}
     >
-      {startContent && hasStart && (
-        <span className="start-content">{startContent}</span>
-      )}
+      {startContent && <span className="start-content">{startContent}</span>}
       {isLoading && spinnerPlacement === "start" && (
         <span className="spinner">{spinner}</span>
       )}
@@ -83,38 +77,8 @@ export default function NextuiButton({
       {isLoading && spinnerPlacement === "end" && (
         <span className="spinner">{spinner}</span>
       )}
-      {endContent && hasEnd && (
-        <span className="end-content">{endContent}</span>
-      )}
+      {endContent && <span className="end-content">{endContent}</span>}
     </Button>
-    // <Button
-    //   className={className}
-    //   variant={variant}
-    //   color={color}
-    //   size={size}
-    //   radius={radius}
-    //   fullWidth={fullWidth}
-    //   isIconOnly={isIconOnly}
-    //   isDisabled={isDisabled}
-    //   isLoading={isLoading}
-    //   disableRipple={disableRipple}
-    //   disableAnimation={disableAnimation}
-    //   onClick={onPress}
-    // >
-    //   {startContent && hasStart && (
-    //     <span className="start-content">{startContent}</span>
-    //   )}
-    //   {/* {isLoading && spinnerPlacement === "start" && (
-    //     <span className="spinner">{spinner}</span>
-    //   )} */}
-    //   {children}
-    //   {/* {isLoading && spinnerPlacement === "end" && (
-    //     <span className="spinner">{spinner}</span>
-    //   )} */}
-    //   {endContent && hasEnd && (
-    //     <span className="end-content">{endContent}</span>
-    //   )}
-    // </Button>
   );
 }
 
@@ -159,15 +123,13 @@ PLASMIC.registerComponent(NextuiButton, {
       type: "choice",
       options: ["none", "sm", "md", "lg", "full"],
     },
-    hasStart: { type: "boolean", defaultValue: false },
-    hasEnd: { type: "boolean", defaultValue: false },
     startContent: {
       type: "slot",
-      hidden: (props) => !props.hasStart,
+      hidePlaceholder: true,
     },
     endContent: {
       type: "slot",
-      hidden: (props) => !props.hasEnd,
+      hidePlaceholder: true,
     },
     spinner: {
       type: "slot",

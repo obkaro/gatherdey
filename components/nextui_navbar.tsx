@@ -176,12 +176,14 @@ interface NavbarMenuProps {
   children: React.ReactNode[];
   portalContainer?: HTMLElement;
   motionProps?: MotionProps;
+  className?: string;
 }
 
 function NextuiNavbarMenu({
   children,
   portalContainer,
   motionProps,
+  className,
 }: NavbarMenuProps) {
   const defaultPortalContainer =
     typeof document !== "undefined" ? document.body : undefined;
@@ -190,6 +192,7 @@ function NextuiNavbarMenu({
     <NavbarMenu
       portalContainer={portalContainer || defaultPortalContainer}
       motionProps={motionProps}
+      className={className}
     >
       {children}
     </NavbarMenu>

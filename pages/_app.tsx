@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import "../styles/globals.css";
 
 import { NextUIProvider } from "@nextui-org/react";
@@ -89,6 +91,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <PostHogProvider client={posthog}>
       <NextUIProvider>
         <Component {...pageProps} />;
+        <SpeedInsights />
       </NextUIProvider>
     </PostHogProvider>
   );

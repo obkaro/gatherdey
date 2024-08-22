@@ -1,10 +1,7 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Input } from "@nextui-org/react";
 import { PLASMIC } from "@/plasmic-init";
-
 import { ValidationError } from "@react-types/shared";
-
-// type ValidationError = string | Error;
 
 export interface InputProps {
   className?: string;
@@ -59,72 +56,78 @@ export interface InputProps {
   onClear?: () => void;
 }
 
-export function NextuiInput({
-  className,
-  children,
-  variant = "flat",
-  color = "default",
-  size = "md",
-  radius,
-  label,
-  value,
-  defaultValue,
-  placeholder,
-  description,
-  errorMessage,
-  validate,
-  validationBehavior = "aria",
-  startContent,
-  endContent,
-  labelPlacement = "inside",
-  fullWidth = true,
-  isClearable = false,
-  isRequired = false,
-  isReadOnly = false,
-  isDisabled = false,
-  isInvalid = false,
-  baseRef,
-  disableAnimation = false,
-  classNames,
-  onChange,
-  onValueChange,
-  onClear,
-}: InputProps) {
-  return (
-    <Input
-      className={className}
-      ref={baseRef}
-      variant={variant}
-      color={color}
-      size={size}
-      radius={radius}
-      label={label}
-      value={value}
-      defaultValue={defaultValue}
-      placeholder={placeholder}
-      description={description}
-      errorMessage={isInvalid ? errorMessage : undefined}
-      validate={validate}
-      validationBehavior={validationBehavior}
-      startContent={startContent}
-      endContent={endContent}
-      labelPlacement={labelPlacement}
-      fullWidth={fullWidth}
-      isClearable={isClearable}
-      isRequired={isRequired}
-      isReadOnly={isReadOnly}
-      isDisabled={isDisabled}
-      isInvalid={isInvalid}
-      disableAnimation={disableAnimation}
-      classNames={classNames}
-      onChange={(e) => {
-        onChange?.(e.target.value);
-        //onValueChange?.(e.target.value);
-      }}
-      onClear={onClear}
-    />
-  );
-}
+export const NextuiInput = forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      className,
+      children,
+      variant = "flat",
+      color = "default",
+      size = "md",
+      radius,
+      label,
+      value,
+      defaultValue,
+      placeholder,
+      description,
+      errorMessage,
+      validate,
+      validationBehavior = "aria",
+      startContent,
+      endContent,
+      labelPlacement = "inside",
+      fullWidth = true,
+      isClearable = false,
+      isRequired = false,
+      isReadOnly = false,
+      isDisabled = false,
+      isInvalid = false,
+      disableAnimation = false,
+      classNames,
+      onChange,
+      onValueChange,
+      onClear,
+    }: InputProps,
+    ref // This is the forwarded ref
+  ) => {
+    return (
+      <Input
+        className={className}
+        ref={ref} // Attach the forwarded ref here
+        variant={variant}
+        color={color}
+        size={size}
+        radius={radius}
+        label={label}
+        value={value}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+        description={description}
+        errorMessage={isInvalid ? errorMessage : undefined}
+        validate={validate}
+        validationBehavior={validationBehavior}
+        startContent={startContent}
+        endContent={endContent}
+        labelPlacement={labelPlacement}
+        fullWidth={fullWidth}
+        isClearable={isClearable}
+        isRequired={isRequired}
+        isReadOnly={isReadOnly}
+        isDisabled={isDisabled}
+        isInvalid={isInvalid}
+        disableAnimation={disableAnimation}
+        classNames={classNames}
+        onChange={(e) => {
+          onChange?.(e.target.value);
+          //onValueChange?.(e.target.value);
+        }}
+        onClear={onClear}
+      />
+    );
+  }
+);
+
+NextuiInput.displayName = "NextuiInput";
 
 PLASMIC.registerComponent(NextuiInput, {
   name: "NextuiInput",
@@ -257,7 +260,7 @@ PLASMIC.registerComponent(NextuiInput, {
       // The prop name for the event handler that is called whenever
       // this state changes
       onChangeProp: "onChange",
-      // The initial value of a writable state is sepecified as the
+      // The initial value of a writable state is specified as the
       // `defaultValue` for your valueProp
     },
   },

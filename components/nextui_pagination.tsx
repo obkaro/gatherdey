@@ -63,13 +63,72 @@ interface PaginationProps {
   onChange?: (page: number) => void;
 }
 
+// const NextuiPagination: React.FC<PaginationProps> = ({
+//   variant = "flat",
+//   color = "default",
+//   size = "md",
+//   radius = "xl",
+//   total = 1,
+//   dotsJump = 5,
+//   initialPage = 1,
+//   page,
+//   siblings = 1,
+//   boundaries = 1,
+//   loop = false,
+//   isCompact = false,
+//   isDisabled = false,
+//   showShadow = false,
+//   showControls = false,
+//   disableCursorAnimation = false,
+//   renderItem,
+//   getItemAriaLabel,
+//   disableAnimation = false,
+//   classNames,
+//   onChange,
+// }) => {
+//   // Implement the Pagination component logic here
+//   return (
+//     <nav
+//       role="navigation"
+//       data-controls={showControls}
+//       data-loop={loop}
+//       data-dots-jump={dotsJump}
+//       data-total={total}
+//       data-active-page={page || initialPage}
+//       className={`pagination ${variant} ${color} ${size} ${radius} ${
+//         isCompact ? "compact" : ""
+//       } ${isDisabled ? "disabled" : ""} ${showShadow ? "shadow" : ""} ${
+//         disableCursorAnimation ? "no-animation" : ""
+//       }`}
+//     >
+//       {/* Render pagination items here */}
+//       {renderItem &&
+//         renderItem({
+//           ref: null,
+//           value: null,
+//           index: 0,
+//           activePage: page || initialPage,
+//           isActive: false,
+//           isFirst: false,
+//           isLast: false,
+//           isNext: false,
+//           isPrevious: false,
+//           className: "",
+//           onNext: () => {},
+//           onPrevious: () => {},
+//           setPage: (page: number) => {},
+//         })}
+//     </nav>
+//   );
+// };
+
 const NextuiPagination: React.FC<PaginationProps> = ({
   variant = "flat",
   color = "default",
   size = "md",
-  radius = "xl",
+  radius = "md",
   total = 1,
-  dotsJump = 5,
+  dotsJump = 4,
   initialPage = 1,
   page,
   siblings = 1,
@@ -86,39 +145,31 @@ const NextuiPagination: React.FC<PaginationProps> = ({
   classNames,
   onChange,
 }) => {
-  // Implement the Pagination component logic here
   return (
-    <nav
-      role="navigation"
-      data-controls={showControls}
-      data-loop={loop}
-      data-dots-jump={dotsJump}
-      data-total={total}
-      data-active-page={page || initialPage}
-      className={`pagination ${variant} ${color} ${size} ${radius} ${
-        isCompact ? "compact" : ""
-      } ${isDisabled ? "disabled" : ""} ${showShadow ? "shadow" : ""} ${
-        disableCursorAnimation ? "no-animation" : ""
-      }`}
-    >
-      {/* Render pagination items here */}
-      {renderItem &&
-        renderItem({
-          ref: null,
-          value: null,
-          index: 0,
-          activePage: page || initialPage,
-          isActive: false,
-          isFirst: false,
-          isLast: false,
-          isNext: false,
-          isPrevious: false,
-          className: "",
-          onNext: () => {},
-          onPrevious: () => {},
-          setPage: (page: number) => {},
-        })}
-    </nav>
+    <Pagination
+      variant={variant}
+      color={color}
+      size={size}
+      radius={radius}
+      total={total}
+      dotsJump={dotsJump}
+      initialPage={initialPage}
+      page={page}
+      siblings={siblings}
+      boundaries={boundaries}
+      loop={loop}
+      isCompact={isCompact}
+      isDisabled={isDisabled}
+      showShadow={showShadow}
+      showControls={showControls}
+      disableCursorAnimation={disableCursorAnimation}
+      disableAnimation={disableAnimation}
+      classNames={classNames}
+      onChange={onChange}
+      renderItem={(props) =>
+        renderItem ? renderItem(props) : <PaginationItem {...props} />
+      }
+    />
   );
 };
 

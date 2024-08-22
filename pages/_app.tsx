@@ -90,9 +90,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <PostHogProvider client={posthog}>
       <NextUIProvider>
-        <Component {...pageProps} />;
-        <SpeedInsights />
+        <Component {...pageProps} />
       </NextUIProvider>
+      <SpeedInsights />
     </PostHogProvider>
   );
 }

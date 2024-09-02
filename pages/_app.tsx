@@ -20,6 +20,8 @@ import "../components/nextui_navbar";
 import "../components/nextui_input";
 import "../components/shadcn_form";
 import "../components/nextui_chip";
+import "../components/header";
+import "../components/header_2";
 
 // Check that PostHog is client-side (used to handle Next.js SSR)
 if (typeof window !== "undefined") {

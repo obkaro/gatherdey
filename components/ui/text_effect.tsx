@@ -1,6 +1,5 @@
-"use client";
-import { motion, AnimatePresence } from "framer-motion";
 import React, { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type TextEffectProps = {
   words: string[];
@@ -14,20 +13,27 @@ type TextEffectProps = {
 
 const TextEffect: React.FC<TextEffectProps> = ({
   words,
-  as,
+  as = "span",
   className,
-  typeSpeed,
-  backspaceSpeed,
-  delay,
-  backspaceDelay,
+  typeSpeed = 100,
+  backspaceSpeed = 50,
+  delay = 1500,
+  backspaceDelay = 500,
 }) => {
-  const [currentWord, setCurrentWord] = useState("");
+  const [currentWord, setCurrentWord] = useState(words[0]); // Start with the first word
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
   const containerRef = useRef<HTMLSpanElement>(null);
   const [containerWidth, setContainerWidth] = useState<string>("auto");
 
   useEffect(() => {
+    setIsHydrated(true); // Set hydration status to true once the component has mounted
+  }, []);
+
+  useEffect(() => {
+    if (!isHydrated) return; // Skip the typing effect until hydration is complete
+
     const fullWord = words[currentWordIndex];
 
     const handleTyping = () => {
@@ -58,6 +64,7 @@ const TextEffect: React.FC<TextEffectProps> = ({
     backspaceSpeed,
     delay,
     backspaceDelay,
+    isHydrated,
   ]);
 
   useEffect(() => {
@@ -79,18 +86,20 @@ const TextEffect: React.FC<TextEffectProps> = ({
     >
       <span ref={containerRef} style={{ display: "inline-block" }}>
         <AnimatePresence initial={false}>
-          {currentWord.split("").map((char, index) => (
-            <motion.span
-              key={`${char}-${index}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              style={{ display: "inline-block" }}
-            >
-              {char}
-            </motion.span>
-          ))}
+          {(isHydrated ? currentWord : words[0])
+            .split("")
+            .map((char, index) => (
+              <motion.span
+                key={`${char}-${index}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                style={{ display: "inline-block" }}
+              >
+                {char}
+              </motion.span>
+            ))}
         </AnimatePresence>
       </span>
     </MotionTag>

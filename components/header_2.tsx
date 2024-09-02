@@ -13,7 +13,6 @@ export function TextEffectPerChar(props: {
       delay={3600}
       backspaceDelay={0}
       className={props.className}
-      as="h1"
     />
   );
 }

@@ -138,6 +138,7 @@ interface NavbarMenuToggleProps {
   defaultSelected?: boolean;
   srOnlyText?: string;
   onChange?: (isOpen: boolean) => void;
+  isOpen?: boolean;
   className?: string;
 }
 
@@ -147,28 +148,25 @@ function NextuiNavbarMenuToggle({
   isSelected = false,
   defaultSelected = false,
   srOnlyText = "open/close navigation menu",
+  isOpen,
   onChange,
   className,
 }: NavbarMenuToggleProps) {
-  const [isOpen, setIsOpen] = useState(defaultSelected);
-
-  const handleToggle = () => {
-    const newIsOpen = !isOpen;
-    setIsOpen(newIsOpen);
-    onChange?.(newIsOpen);
-  };
+  // const handleToggle = () => {
+  //   const newIsOpen = !isOpen;
+  //   setIsOpen(newIsOpen);
+  //   onChange?.(newIsOpen);
+  // };
 
   return (
     <NavbarMenuToggle
       data-open={isOpen}
       data-pressed={isSelected}
-      onClick={handleToggle}
+      // onClick={handleToggle}
       onChange={onChange}
       className={className}
-    >
-      {typeof icon === "function" ? icon(isOpen) : icon}
-      <span className="sr-only">{srOnlyText}</span>
-    </NavbarMenuToggle>
+      aria-label={isOpen ? "Close menu" : "Open menu"}
+    />
   );
 }
 
@@ -284,6 +282,7 @@ PLASMIC.registerComponent(NextuiNavbarMenuToggle, {
     isSelected: "boolean",
     defaultSelected: "boolean",
     srOnlyText: "string",
+    isOpen: "boolean",
     onChange: {
       type: "eventHandler",
       argTypes: [{ name: "isOpen", type: "boolean" }],

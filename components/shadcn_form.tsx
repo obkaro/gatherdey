@@ -10,9 +10,6 @@ import { repeatedElement } from "@plasmicapp/loader-nextjs";
 import { Form, FormField, FormItem } from "@/components/ui/form";
 
 import React, { ReactElement, useRef, useImperativeHandle } from "react";
-import { input } from "@nextui-org/react";
-// import { get } from "http";
-// import { on } from "events";
 
 interface Field {
   name: string;
@@ -102,170 +99,6 @@ const getValidationSchema = (
       return z.string().min(1, validationText);
   }
 };
-
-// export const ShadcnForm = React.forwardRef(
-//   (
-//     {
-//       className,
-//       onSubmit,
-//       button,
-//       formFields = [],
-//       inputSlot,
-//       variant = "flat",
-//       color = "default",
-//       size = "md",
-//       radius,
-//       labelPlacement = "inside",
-//       fullWidth = true,
-//       baseRef,
-//       startContent,
-//       endContent,
-//       onValueChange,
-//       validationState,
-//       classNames,
-//       value,
-//       clearForm,
-//     }: FormProps,
-//     ref
-//   ) => {
-//     //
-
-//     // Dynamically build the form schema based on the fields prop
-//     const formSchema = z.object(
-//       formFields.reduce((schema, field) => {
-//         schema[field.name] = getValidationSchema(
-//           field.validationType,
-//           field.validationText
-//         );
-//         return schema;
-//       }, {} as Record<string, ZodTypeAny>)
-//     );
-
-//     const form = useForm({
-//       resolver: zodResolver(formSchema),
-//       defaultValues: formFields.reduce((defaults, field) => {
-//         defaults[field.name] = "";
-//         return defaults;
-//       }, {} as Record<string, any>),
-//     });
-
-//     // const formSchema = z.object({
-//     //   firstname: z.string().nonempty("First name is required"),
-//     //   email: z.string().email("Invalid email address"),
-//     // });
-
-//     // const form = useForm({
-//     //   resolver: zodResolver(formSchema),
-//     //   defaultValues: {
-//     //     firstname: "",
-//     //     email: "",
-//     //   },
-//     // });
-
-//     // Create a ref to the form
-//     const formRef = useRef<HTMLFormElement>(null);
-
-//     // Expose the formSubmit action
-//     useImperativeHandle(ref, () => ({
-//       formSubmit: () => {
-//         if (formRef.current) {
-//           formRef.current.requestSubmit();
-//         }
-//       },
-//     }));
-
-//     // const setValue = (value: string) => {
-
-//     // };
-
-//     // const onInputChange = {(e) => onChange(e.target.value)};
-
-//     return (
-//       <Form {...form}>
-//         <form
-//           ref={formRef} // Attach the ref to the form element
-//           onSubmit={form.handleSubmit(onSubmit)}
-//           className={className}
-//         >
-//           {formFields.map((field, i) => (
-//             <FormContext.Provider value={field} key={field.name}>
-//               <FormField
-//                 key={field.name}
-//                 control={form.control}
-//                 name={field.name}
-//                 render={({ field: inputProps, fieldState }) => (
-//                   <FormItem>
-//                     {repeatedElement(
-//                       i === 0, // Set the first element as primary for editing in Plasmic Studio
-//                       React.cloneElement(inputSlot as ReactElement, {
-//                         // Pass form field props to input
-//                         placeholder: field.placeholder,
-//                         label: field.label,
-//                         type: field.type,
-//                         description: field.description,
-//                         isRequired: field.isRequired,
-//                         isReadOnly: field.isReadOnly,
-//                         isDisabled: field.isDisabled,
-//                         isInvalid:
-//                           !!fieldState.error?.message || field.isInvalid,
-//                         errorMessage: fieldState.error?.message,
-//                         variant: variant,
-//                         color: color,
-//                         size: size,
-//                         radius: radius,
-//                         labelPlacement: labelPlacement,
-//                         fullWidth: fullWidth,
-//                         baseRef: baseRef,
-//                         startContent: startContent,
-//                         endContent: endContent,
-//                         onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-//                           const inputValue = e.toString();
-
-//                           inputProps.onChange(e);
-
-//                           // Create a shallow copy of the value array
-//                           const newValue = value ? [...value] : [];
-
-//                           console.log("New value:", newValue);
-
-//                           // Find the index of the field in the value array
-//                           const index = newValue.findIndex(
-//                             (item) => item.fieldName === field.name
-//                           );
-
-//                           if (index !== -1) {
-//                             // Update the existing field value
-//                             newValue[index].value = inputValue;
-//                             console.log("Updated value:", newValue);
-//                           } else {
-//                             // Add a new field if it doesn't exist in the value array
-//                             newValue.push({
-//                               fieldName: field.name,
-//                               value: inputValue,
-//                             });
-//                             // }
-
-//                             // Call onValueChange with the updated array
-//                             onValueChange(newValue);
-//                           }
-//                           // Call the field's onChange if provided
-//                           // field.onChange(inputValue);
-//                         },
-//                       })
-//                     )}
-//                   </FormItem>
-//                 )}
-//               />
-//             </FormContext.Provider>
-//           ))}
-//           {button}
-//         </form>
-//       </Form>
-//     );
-//   }
-// );
-
-// ShadcnForm.displayName = "ShadcnForm";
 
 export const ShadcnForm = React.forwardRef(
   (
@@ -448,7 +281,7 @@ PLASMIC.registerComponent(ShadcnForm, {
         fields: {
           id: "number",
           name: "string",
-          label: "string",
+          label: "slot",
           type: {
             type: "choice",
             options: ["text", "email", "password", "number"],

@@ -7,7 +7,7 @@ export function TextEffectPerChar(props: {
 }) {
   return (
     <TextEffect
-      words={props.words!.map((word) => word.text)}
+      words={(props.words ?? [{ text: "Food" }]).map((word) => word.text)}
       typeSpeed={180}
       backspaceSpeed={60}
       delay={3600}
@@ -25,6 +25,11 @@ PLASMIC.registerComponent(TextEffectPerChar, {
     },
     words: {
       type: "array",
+      defaultValue: [
+        {
+          text: "Food",
+        },
+      ],
       itemType: {
         type: "object",
         fields: {
@@ -32,11 +37,6 @@ PLASMIC.registerComponent(TextEffectPerChar, {
             type: "string",
           },
         },
-        defaultValue: [
-          {
-            text: "Food",
-          },
-        ],
       },
     },
   },

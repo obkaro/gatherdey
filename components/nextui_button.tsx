@@ -133,7 +133,7 @@ PLASMIC.registerComponent(NextuiButton, {
     },
     spinner: {
       type: "slot",
-      hidden: (props) => !props.isLoading,
+      hidden: (props: NextuiButtonProps) => !props.isLoading,
     },
     spinnerPlacement: {
       type: "choice",

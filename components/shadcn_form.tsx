@@ -394,15 +394,17 @@ PLASMIC.registerComponent(ShadcnForm, {
     },
     value: {
       type: "array",
+      defaultValue: [
+        {
+          fieldName: "",
+          value: "",
+        },
+      ],
       itemType: {
         type: "object",
         fields: {
           fieldName: "string",
           value: "string",
-        },
-        defaultValue: {
-          fieldName: "",
-          value: "",
         },
       },
     },

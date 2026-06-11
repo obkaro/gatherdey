@@ -73,7 +73,7 @@ const TextEffect: React.FC<TextEffectProps> = ({
     }
   }, [currentWord]);
 
-  const MotionTag = motion[as as keyof typeof motion];
+  const MotionTag = motion[as as keyof typeof motion] as React.ComponentType<React.HTMLAttributes<HTMLElement>>;
 
   return (
     <MotionTag
